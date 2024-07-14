@@ -7,7 +7,12 @@ compatibility_date = "2024-07-12"
 # Docs: https://developers.cloudflare.com/workers/platform/triggers/cron-triggers/
 # Configuration: https://developers.cloudflare.com/workers/wrangler/configuration/#triggers
 [triggers]
-crons = ["* * * * *"] # * * * * * = run every minute
+crons = ["*/15 * * * *"] # * * * * * = run every minute
+
+[[kv_namespaces]]
+binding = "INFOBOT_KV"
+id = "630cbc3291b246ad822d10694873d07c"
+preview_id = "9340a321a6b949faa6bd0f935a42432c"
 
 # Automatically place your workloads in an optimal location to minimize latency.
 # If you are running back-end logic in a Worker, running it closer to your back-end infrastructure
