@@ -1,3 +1,8 @@
+/*!
+ * MICROPEN maintenance info bot
+ * Copyright (C) 2024 Kuropen (Hirochika Yuda) https://kuropen.org/
+ */
+
 import parse from 'rss-to-json'
 import {api as MisskeyApi} from 'misskey-js'
 import type { FeedEntry } from './types'

@@ -16,5 +16,6 @@
   "dependencies": {
     "misskey-js": "^2024.5.0",
     "rss-to-json": "^2.1.1"
-  }
+  },
+  "license": "BSL-1.0"
 }
