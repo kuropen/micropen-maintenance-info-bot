@@ -1,20 +1,3 @@
-/*
- * Welcome to Cloudflare Workers!
- *
- * This is a template for a Scheduled Worker: a Worker that can run on a
- * configurable interval:
- * https://developers.cloudflare.com/workers/platform/triggers/cron-triggers/
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Run `curl "http://localhost:8787/__scheduled?cron=*+*+*+*+*"` to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.toml`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-
 import parse from 'rss-to-json'
 import {api as MisskeyApi} from 'misskey-js'
 import type { FeedEntry } from './types'
@@ -41,8 +24,6 @@ const cloudflareFetch: FetchLike = async (input, init) => {
 }
 
 export default {
-	// The scheduled handler is invoked at the interval set in our wrangler.toml's
-	// [[triggers]] configuration.
 	async scheduled(event, env, ctx): Promise<void> {
 		// MICROPENに対して HEAD リクエストをし、失敗した場合は終了する
 		const response = await fetch(MICROPEN_HOST, { method: 'HEAD' })
@@ -68,7 +49,6 @@ export default {
 		// 処理済みのエントリを取得
 		const processedEntryList = await env.INFOBOT_KV.get(PROCESSED_ENTRIES_KV_KEY)
 		const processedEntries = processedEntryList?.split(',') ?? []
-		console.log(processedEntries)
 
 		// フィードからエントリを取得
 		const feedEntries = await parse(STATUS_PAGE_HOST + '/feed')
@@ -108,7 +88,6 @@ export default {
 		})
 
 		// 処理済みのエントリリストを保存
-		console.log(newProcessedEntries)
 		// 空文字列の混入防止のため、0件ならキーを削除
 		if (newProcessedEntries.length > 0) {
 			await env.INFOBOT_KV.put(PROCESSED_ENTRIES_KV_KEY, newProcessedEntries.join(','))
