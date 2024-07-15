@@ -25,6 +25,15 @@ const cloudflareFetch: FetchLike = async (input, init) => {
 }
 
 export default {
+	async fetch(req, env, ctx) {
+		// 死活監視用のため、テキストを返すだけ
+		return new Response('The bot is alive.', {
+			headers: {
+				'content-type': 'text/plain',
+			},
+		})
+	},
+
 	async scheduled(event, env, ctx): Promise<void> {
 		const {SERVICE_HOST, STATUS_PAGE_HOST} = env
 		const SERVICE_ROOT = SERVICE_HOST + '/'
