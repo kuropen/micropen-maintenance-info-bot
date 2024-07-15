@@ -2,6 +2,7 @@
 name = "micropen-maintenance-info-bot"
 main = "src/index.ts"
 compatibility_date = "2024-07-12"
+compatibility_flags = [ "nodejs_compat" ]
 
 # Cron Triggers
 # Docs: https://developers.cloudflare.com/workers/platform/triggers/cron-triggers/
@@ -19,4 +20,26 @@ SERVICE_HOST = "https://mi.kuropen.org"
 STATUS_PAGE_HOST = "https://status.kuropen.org"
 SERVICE_NAME = "MICROPEN"
 PLATFORM_NAME = "Misskey"
+PROCESSED_ENTRIES_KV_KEY = "processed-entries"
 TEST_MODE = false
+ALLOW_EXEC_VIA_HTTP = false
+
+[env.test]
+name = "test-micropen-maintenance-info-bot"
+
+[env.test.vars]
+SERVICE_HOST = "https://mi.kuropen.org"
+STATUS_PAGE_HOST = "https://status.kuropen.org"
+SERVICE_NAME = "MICROPEN"
+PLATFORM_NAME = "Misskey"
+PROCESSED_ENTRIES_KV_KEY = "test-processed-entries"
+ALLOW_EXEC_VIA_HTTP = true
+TEST_MODE = true
+
+[[env.test.kv_namespaces]]
+binding = "INFOBOT_KV"
+id = "630cbc3291b246ad822d10694873d07c"
+preview_id = "9340a321a6b949faa6bd0f935a42432c"
+
+[env.test.triggers]
+crons = []

@@ -14,6 +14,7 @@
     "wrangler": "^3.60.3"
   },
   "dependencies": {
+    "dom-parser": "^1.1.5",
     "misskey-js": "^2024.5.0",
     "rss-to-json": "^2.1.1"
   },
