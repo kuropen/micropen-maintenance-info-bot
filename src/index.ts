@@ -80,13 +80,6 @@ const run = async (env: Env) => {
 
 			// 処理済みのエントリリストに追加
 			newProcessedEntries.push(entryUniqueKey)
-
-			// published が 1時間以内のエントリのみをメッセージに含める
-			const now = Date.now()
-			const oneHourAgo = now - 60 * 60 * 1000
-			if (entry.published < oneHourAgo) {
-				return false
-			}
 		}
 
 		return true
